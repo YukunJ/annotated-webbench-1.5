@@ -172,7 +172,10 @@ int main(int argc, char *argv[])
    case 'c': clients=atoi(optarg);break;
   }
  }
- 
+ // now optind should be one less than argc
+ // the last argument is the web server URL
+ // 现在optind应该比argc少1
+ // 最后一个参数应该是web服务器的URL
  if(optind==argc) {
                       fprintf(stderr,"webbench: Missing URL!\n");
 		      usage();
