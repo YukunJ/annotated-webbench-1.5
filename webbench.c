@@ -351,6 +351,8 @@ static int bench(void)
   FILE *f;
 
   /* check avaibility of target server */
+  // build TCP socket with Server to test availability
+  // 和服务器搭建套接字来测试一下服务器是否在线
   i=Socket(proxyhost==NULL?host:proxyhost,proxyport);
   if(i<0) { 
 	   fprintf(stderr,"\nConnect to server failed. Aborting benchmark.\n");
@@ -365,14 +367,6 @@ static int bench(void)
 	  perror("pipe failed.");
 	  return 3;
   }
-
-  /* not needed, since we have alarm() in childrens */
-  /* wait 4 next system clock tick */
-  /*
-  cas=time(NULL);
-  while(time(NULL)==cas)
-        sched_yield();
-  */
 
   /* fork childs */
   // here fork many concurrent client process to query the web server
